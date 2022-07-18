@@ -1,0 +1,22 @@
+<!--Make List view; This is user's can fill out a form to create a custom list.
+-->
+{% extends "website/layout.html" %}
+
+{% block body %}
+
+    <div id="new-list">
+        <div class="container">
+            <h3>Make new List</h3>
+            <hr>
+            <div class="form-group">
+                <form id="form-container" method="POST"> 
+                    {% csrf_token %}
+                    {{ form.as_p }}
+        
+                    <br>
+                    <input class="btn btn-info" type="submit" value="Add List" form="form-container">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

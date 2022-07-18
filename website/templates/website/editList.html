@@ -1,0 +1,20 @@
+<!--Edit List view; This is where user's can edit their customized list's information. The 
+    page should show up with prepopulated list information. If the user is not the user who
+    created the list, this page shouldn't be accessible. 
+-->
+{% extends "website/layout.html" %}
+
+{% block body %}
+    <div id="new-list">
+        <h3>Edit List</h3>
+        <div class="form-group">
+            <form id="list" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <hr>
+                <input class="btn btn-info" type="submit" value="Submit Edit" form="list">
+            </form>
+        </div>
+    </div>
+{% endblock %}
+

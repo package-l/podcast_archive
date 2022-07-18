@@ -1,0 +1,24 @@
+<!--Add New Review view; This is where user's can fill out a form to add a new review. Similar to
+    Add List Episode, it uses a dynamic select to select a podcast and than show the corresponding
+    episodes to the podcast in the second selection dropdown.
+-->
+{% extends "website/layout.html" %}
+
+{% block body %}
+
+<div id="new-podcast">
+    <div class="container">
+        <div id="new-review">
+            <h3>New Review</h3>
+            <hr>
+            <div class="form-group">
+                <form id="review" action="{% url 'newReview' %}" method="POST">
+                    {% csrf_token  %}
+                    {{ form.as_p }}
+                    <input class="btn btn-info" type="submit" value="Add Review" form="review">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

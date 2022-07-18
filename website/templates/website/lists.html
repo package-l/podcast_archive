@@ -1,0 +1,43 @@
+<!--All lists page; This is where the user can see all the public custom lists on the site
+    and also gives user access to the Make a List button if they want to make their own custom list.
+-->
+
+{% extends "website/layout.html" %}
+
+{% block body %}
+    <div id="all-lists">
+        <div class="container">
+            <div class="row align-items-end">
+                <div class="col-md-6">
+                    <h2>All Lists</h2>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                    <a href="{% url 'makeList' %}" class="add-buttons">Make a List</a>
+                </div>
+            </div>
+            <hr>
+            <div class="row justify-content-center">
+                {% for list in lists %}
+                    {% if list.is_private == False %}
+                        <div id="list-box" class="col-md-5">
+                            <div id="list-content" class="row">
+                                <div class="col-md-6">
+                                    <a href="{% url 'listPageView' list.list_id %}"><img src="{{ list.image }}" alt="{{ list.title }}'s cover image"></a>
+                                </div>
+                                <div class="col-md-6 align-items-end center-block">
+                                    <a href="{% url 'listPageView' list.list_id %}"><h4 class="list-title">{{ list.title }}</h4></a>
+                                    <!--<button class="btn btn-info">Edit</button>-->
+                                    <div class="list-description">{{ list.description }}</div>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <div>Created by <a href="{% url 'profile' list.user.id %}">{{ list.user.username }}</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

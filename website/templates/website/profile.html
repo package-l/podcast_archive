@@ -1,0 +1,136 @@
+<!--Profile view; Includes follow/unfollow capabilities, shows user's reviews, lists and watchlist.
+    Visibility of certain information is dependent on which user is signed in. Privated lists are 
+    only visible to the user who made the list.
+-->
+{% extends "website/layout.html" %}
+
+{% block body %}
+    <div id="profile-view">
+        <div class="container">
+            <h2 class="theprofile" id="{{ user.id }}">{{ user.username }} Profile</h2>
+            <div class="d-flex row justify-content-end">
+                {% if user.is_authenticated and request.user != user %}
+                <button class="btnfollow btn btn-info" id="{{ user.id }} type="submit">Follow</button>
+                {% endif %}
+                <br>
+                <table id="follows" class="table-sm table-bordered">
+                    <tbody>
+                        <tr>
+                            <th scope="col" class="text-center" id="followers">{{ followers|default_if_none:0 }}</th>
+                            <th scope="col" class="text-center" id="following">{{ following|default_if_none:0 }}</th>
+                        </tr>
+                        <tr>
+                            <td class="text-center">Followers</td>
+                            <td class="text-center">Following</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn btn-info" id="reviews">Reviews</button>
+            <button class="btn btn-info" id="lists">Lists</button>
+            <button class="btn btn-info" id="watchlist">Watchlist</button>
+            <hr>
+
+            <!-- Shows the user's reviews view for profile-->
+            <div id="review-view">
+                <h4>{{ user.username }}'s Reviews</h4>
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        {% for review in reviews %}
+                        <div class="row review align-items-center">
+                            <div class="col-md-6">
+                                <a href="{% url 'podcastPage' review.podcast.podcast_id %}"><img class="img-fluid review-preview center-block" src="{{ review.podcast.image }}" alt="{{ review.podcast.title }}"></a>
+                            </div>
+                            <div class="col-md-6 preview center-block">
+                                <a><h4 class="episode-title"><b>{{ review.episode.title }}</b></h4></a>
+                                <a href="{% url 'podcastPage' review.podcast.podcast_id %}"><p class="podcast-title"><b>{{ review.podcast.title }}</b></p></a>
+                                <p class="content-text"><b>{{ review.score }}/5 RATING</b></p>
+                                <p class="content-text">{{ review.content }}</p>
+                                <div>Reviewed by <a href="{% url 'profile' review.user.id %}">{{ review.user.username }}</a></div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shows lists the user is following/watching view for profile-->
+            <div id="watchlist-view">
+                <h4>{{ user.username }}'s Watchlist</h4>
+                <div class="row">
+                    {% for watched in watchlist %}
+                 
+                    <div class="col-md-9 mx-auto">
+                        {% if user.is_authenticated and request.user != watched.user %}
+                            <div class="row watched align-items-center">
+                                {% if watched.image %}
+                                    <div class="col-md-4">
+                                        <a href="{% url 'listPageView' watched.list_id %}"><img src="{{ watched.image }}" class="card-img" href="{% url 'listPageView' watched.list_id %}"></a>
+                                    </div>
+                                {% endif %}
+                                    <div class="card-body">
+                                        <a href="{% url 'listPageView' watched.list_id %}"><h5 class="card-title">
+                                            {{ watched.title }}
+                                        </h5></a>
+                                        <p class="card-text">{{ watched.description }}</p>
+                                        <div>Created by <a href="{% url 'profile' watched.user.id %}">{{ watched.user.username }}</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+           
+            {% endfor %}
+                </div>
+            </div>
+
+            <!-- Shows Lists the user made-->
+            <div id="lists-view">
+                <h4>{{ user.username }}'s Lists</h4>
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        {% for list in lists %}
+
+                            {% if user.is_authenticated and request.user != user and list.is_private == False %}
+                        
+                            
+                                    <div id="list-content" class="row list align-items-center">
+                                        <div class="col-md-6">
+                                            <a href="{% url 'listPageView' list.list_id %}"><img src="{{ list.image }}" alt="{{ list.title }}'s cover image"></a>
+                                        </div>
+                                        <div class="col-md-6 align-items-end center-block">
+                                            <a href="{% url 'listPageView' list.list_id %}"><h4 class="list-title">{{ list.title }}</h4></a>
+                                            <!--<button class="btn btn-info">Edit</button>-->
+                                            <div class="list-description">{{ list.description }}</div>
+                                            <br>
+                                            <div>Created by <a href="{% url 'profile' list.user.id %}">{{ list.user.username }}</a></div>
+                                        </div>
+                                    </div>
+                                
+                            
+                                
+                            {% elif user.is_authenticated and request.user == user %} 
+                                
+                            
+                                    <div id="list-content" class="row align-items-center">
+                                        <div class="col-md-6">
+                                            <a href="{% url 'listPageView' list.list_id %}"><img src="{{ list.image }}" alt="{{ list.title }}'s cover image"></a>
+                                        </div>
+                                        <div class="col-md-6 align-items-end center-block">
+                                            <a href="{% url 'listPageView' list.list_id %}"><h4 class="list-title">{{ list.title }}</h4></a>
+                                            <!--<button class="btn btn-info">Edit</button>-->
+                                            <div class="list-description">{{ list.description }}</div>
+                                            <br>
+                                            <div>Created by <a href="{% url 'profile' list.user.id %}">{{ list.user.username }}</a></div>
+                                        </div>
+                                    </div>
+                        
+                            
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

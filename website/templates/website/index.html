@@ -1,0 +1,34 @@
+<!--Home view; This is the main view of the website and is what will show up when you click
+    Home in the navigation. Here, you will see all the recently added reviews show up. 
+-->
+{% extends "website/layout.html" %}
+
+{% block body %}
+    <div id="recent-reviews">
+        <hr>
+        <div class="container vh-100">
+            <h4>Recently Reviewed...</h4>
+            <br>
+            <div class = "row">
+                <div class="review-col col-12 col-md-10 mx-auto">
+                    {% for rev in reviews %}
+                        <div class="row review">
+                            <div class="col col-12 col-md-6">
+                                <a href="{% url 'podcastPage' rev.podcast.podcast_id %}"><img class="img-fluid review-preview center-block" src="{{ rev.podcast.image }}" alt="{{ rev.podcast.title }}"></a>
+                            </div>
+                            <div class="col col-12 col-md-6 review-preview center-block">
+                                <ul>
+                                    <li><a><h4 class="episode-title"><b>{{ rev.episode.title }}</b></h4></a></li>
+                                    <li>from <a href="{% url 'podcastPage' rev.podcast.podcast_id %}"><span class="podcast-title"><b>{{ rev.podcast.title }}</b></span></a></li>
+                                    <li><p class="content-text"><b>{{ rev.score }}/5 RATING</b></p></li>
+                                    <li><p class="content-text">{{ rev.content }}</p></li>
+                                    <li><div>Reviewed by <a href="{% url 'profile' rev.user.id %}">{{ rev.user.username }}</a></div></li>
+                                </ul>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway+Dots&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope&family=Overpass:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope&family=Overpass:wght@400;700&family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo&family=Manrope&family=Overpass:wght@400;700&family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo&family=Manrope&family=Overpass:wght@400;700&family=Playfair+Display&family=Spectral&family=Work+Sans&display=swap');
+
+
+/* Styling for across the website */
+html, body {
+    height: 100%;
+    background-color: rgba(53, 86, 153, 0.987);
+    color: white;
+    font-family: 'Work Sans', sans-serif;
+}
+
+img {
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+}
+
+
+hr {
+    background-color: white;
+    border-top: dashed 1px;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    color:mediumorchid;
+}
+
+a:hover {
+    color: skyblue;
+}
+
+form {
+    padding-bottom: 2rem;
+}
+
+.review-col {
+    -webkit-column-count: 2; 
+    -moz-column-count: 2; 
+    column-count: 2; 
+    -webkit-column-rule: 1.5px dotted grey;
+    -moz-column-rule: 1.5px dotted grey;
+    column-rule: 1.5px dotted grey;
+}
+
+@media only screen and (max-width: 576px) {
+    .review-col {
+      column-count: 1;
+      -moz-column-count: 1;
+      -webkit-column-count: 1;
+    }
+  }
+
+.content-text {
+    font-family: 'Archivo', Times, serif;
+}
+
+#navigation
+{
+    background-color: rgba(53, 86, 153, 0.987);
+    color: white!important;
+}
+
+.nav-item {
+    display: inline-block;
+    padding-left: 1rem;
+}
+
+.nav-item::after {
+    content: '';
+    display: block;
+    height: 2px;
+    background-color: mediumorchid;
+    transform: scaleX(0);
+    transition: transform ease .3s;
+  }
+  
+.nav-item:hover::after {
+    transform: scaleX(1);
+}
+
+#title-text {
+    font-family: 'Raleway Dots';
+    font-size: 60px;
+    color: white;
+}
+
+a#title-text {
+    text-decoration: none;
+}
+
+/* Index styling */
+
+.review-preview {
+    font-size: 10pt;
+    margin: 1rem;
+}
+
+.review {
+    padding: 1rem;
+}
+
+.episode-title {
+    color: white;
+}
+
+a .podcast-title {
+    color: yellow;
+}
+
+#recent-reviews, #all-podcasts, #all-lists, #profile-view, #new-review, #new-list, #list-page, #new-episode-list, #new-episode, #new-podcast, #new-review, #lists-view, #watchlist-view, .login, .register {
+    padding: 0 5rem 0 5rem;
+}
+
+#recent-reviews .col-md-6 .review, #list-content, #profile-view .col-md-6 .review {
+    padding: 1rem;
+}
+
+#recent-reviews .review-preview, #profile-view .preview {
+    padding: 0.5rem;
+}
+
+.row #list-box {
+    margin: 1rem;
+}
+
+#all-lists #list-box, #profile-view .review, #profile-view #list-content, #watchlist-view .row .col-md-9 {
+    border: 2px solid grey;
+    border-radius: 25px;
+}
+
+#recent-reviews .review {
+    border-bottom: 1.5px dotted grey;
+    padding-bottom: 1rem;
+}
+
+#recent-reviews .row .review, #profile-view .row {
+    margin-bottom: 3rem;
+}
+
+#profile-view #follows {
+    color: white;
+}
+
+#profile-view .table-bordered {
+    border: 0!important;
+}
+
+#profile-view .table-bordered td, th {
+    border: 0!important;
+    border-right: solid 1px white!important;
+    border-left: solid 1px white!important;
+}
+
+.btnfollow {
+    margin-right: 2rem;
+}
+
+th, td {
+    padding: 2rem;
+    margin: 2rem;
+}
+
+th {
+    color: skyblue;
+}
+
+td {
+    color: white;
+}
+
+
+/* Lists styling */
+#all-lists a .list-title {
+    color:yellow;
+}
+
+/* List page styling */
+.list-page-description, .podcast-page-description {
+    padding: 0.5rem;
+    padding-top: 2rem;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+ }
+
+ /* Podcasts page styling */
+.podcast-select {
+    margin-bottom: 2rem;
+}
+
+#all-podcasts .add-buttons {
+    padding-right: 2rem;
+}

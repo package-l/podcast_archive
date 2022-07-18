@@ -1,0 +1,25 @@
+<!--Add Episode to list view; This is where user's select which podcast and episode they want to
+    add to their custom list.
+-->
+{% extends "website/layout.html" %}
+
+{% block body %}
+
+    <div id="new-episode-list">
+        <div class="container">
+            <h3>Add Episode to List</h3>
+            <hr>
+            <div class="form-group">
+                <form id="list" method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <hr>
+                
+                    <br>
+                    <input class="btn btn-info" type="submit" value="Add Episode" form="list">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

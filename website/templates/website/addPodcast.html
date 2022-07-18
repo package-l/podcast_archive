@@ -1,0 +1,20 @@
+<!--Add Podcast view; This is where user's input in the information about a podcast they want
+    to add to the database.
+-->
+{% extends "website/layout.html" %}
+
+{% block body %}
+    <div id="new-podcast">
+        <div class="container">
+            <h3>Add Podcast</h3>
+            <hr>
+            <div class="form-group">
+                <form id="add-podcast" action="{% url 'addPodcast' %}" method="POST">
+                    {% csrf_token  %}
+                    {{ form.as_p }}
+                </form>
+                <input class="btn btn-primary" type="submit" value="Add Podcast" form="add-podcast">
+            </div>
+        </div>
+    </div>
+{% endblock %}

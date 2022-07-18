@@ -1,0 +1,19 @@
+<!--Add Episode view; This is where user's input in the information about an episode they want
+    to add to the database.
+-->
+{% extends "website/layout.html" %}
+
+{% block body %}
+    <div id="new-episode">
+        <div class="container">
+            <h3>Add Episode</h3>
+            <div class="form-group">
+                <form id="add-episode" action="{% url 'addEpisode' %}" method="POST">
+                    {% csrf_token  %}
+                    {{ form.as_p }}
+                </form>
+                <input class="btn btn-primary" type="submit" value="Add Episode" form="add-episode">
+            </div>
+        </div>
+    </div>
+{% endblock %}
