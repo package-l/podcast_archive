@@ -1,4 +1,5 @@
 asgiref==3.5.0
+autopep8==1.6.0
 certifi==2021.10.8
 charset-normalizer==2.0.12
 dj-database-url==0.5.0
@@ -14,10 +15,13 @@ idna==3.3
 markdown2==2.4.2
 Pillow==9.1.0
 podcast-api==1.1.3
+psycopg2-binary==2.9.3
+pycodestyle==2.8.0
 python-decouple==3.6
 pytz==2022.1
 requests==2.27.1
 sqlparse==0.4.2
 swapper==1.3.0
+toml==0.10.2
 urllib3==1.26.9
 whitenoise==6.2.0
